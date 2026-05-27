@@ -1,49 +1,24 @@
-#  Arxius d'input
+#  ARCHIVOS DE INPUT
 
-Aquest directori conté 1 arxiu .txt per cada joc de proves creat.
+Este directorio contiene 2 tipos de archivo de input:
 
-## Format
+- Archivo de gramática: archivo txt que contiene una gramática CFG.
+- Archivo de palabras: archivo txt que contiene palabras para utilizar como input usando la **flag** *--batch*.
 
-El format de cada arxiu d'input és el següent:
+## Formato
 
-<nom de la gramàtica>
-<no terminal 1> <conversio 1> ... <conversio i>
-...
-<no terminal i>
+El formato de cada arxivo de gramática es el siguiente:
 
-# Jocs de prova
+S -> <P1> [prob] | <P2> [prob] | ... | <Pi> [prob]
+NT1 -> <P1> [prob] | <P2> [prob] | ... | <Pi> [prob]
+.
+.
+.
+NTi -> <P1> [prob] | <P2> [prob] | ... | <Pi> [prob]
 
-## Joc 1
+donde:
 
-<descripció>
-
-## Joc 2
-
-<descripció>
-
-## Joc 3
-
-<descripció>
-
-## Joc 4
-
-<descripció>
-
-## Joc 5
-
-<descripció>
-
-## Joc 6
-
-<descripció>
-
-## Joc 7
-
-<descripció>
-
-## Joc 8
-
-<descripció>
-
-## Joc 9
-
+- *S* es el No Terminal inicial.
+- *NT* es un símbolo No Terminal.
+- *P* representa cualquier producción (**Los símbolos en una producción deben estar separados por espacios**). (ejs. *a*, *X A*, *A B C*, etc).
+- *[prob]* es opcional (PCKY) y representa la probabilidad de cada producción.
