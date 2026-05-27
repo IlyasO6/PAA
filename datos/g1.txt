@@ -1,0 +1,11 @@
+# Formato: LadoIzquierdo -> LadoDerecho1 | LadoDerecho2 ...
+# Separamos los símbolos con ESPACIOS.
+
+S -> a | X A | A X | b
+A -> R B
+B -> A X | b | a
+X -> a
+R -> X B
+
+# Con PCFG, el formato escala así:
+# S -> A X [0.7] | b [0.3]
