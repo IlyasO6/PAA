@@ -1,0 +1,4 @@
+# Gramática PCFG 4: Ambigüedad léxica
+S -> A B [1.0]
+A -> a [0.2] | b [0.8]
+B -> b [0.7] | a [0.3]

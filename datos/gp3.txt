@@ -1,0 +1,8 @@
+# Gramática PCFG 3: Pesos desequilibrados
+S -> X Y [1.0]
+X -> A B [0.8] | B A [0.2]
+Y -> C D [0.5] | D C [0.5]
+A -> a [1.0]
+B -> b [1.0]
+C -> c [1.0]
+D -> d [1.0]

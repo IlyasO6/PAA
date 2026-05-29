@@ -2,8 +2,10 @@
 
 import sys
 from cky import cky
+from pcky import pcky
 from utils.grammar_parser import leer_gramatica
 from utils.cli import obtener_argumentos
+from utils.cnf_converter import convertir_a_cnf, es_cnf
 
 def main():
     parser, args = obtener_argumentos()
@@ -19,12 +21,17 @@ def main():
     except Exception as e:
         print(f"[ERROR] No se pudo leer la gramática: {e}")
         sys.exit(1)
-        
-    # Transformación a CNF (POR HACER)
-    if args.cnf:
+       
+    
+    # Transformación a CNF
+    #  substituir la linea por la comentada si se quiere tener control sobre el transformador a cnf con su respectiva flag
+    if not es_cnf(gramatica): #if args.cnf:  
         print("[INFO] Transformando la gramática a Forma Normal de Chomsky (CNF)...")
-        # gramatica = convertir_a_cnf(gramatica)
-        
+        gramatica, simbolo_inicial = convertir_a_cnf(gramatica)
+        print("[INFO] Transformación completada con éxito.\n")
+    else:
+        simbolo_inicial = 'S'
+
     #  Validaciones de coherencia
     if es_pcfg and not args.pcky:
         print("[AVISO] La gramática es probabilística, pero no se activó --pcky. Se ignorarán las probabilidades.\n")
@@ -49,15 +56,11 @@ def main():
     print("-" * 50)
     for palabra in palabras_a_analizar:
         if args.pcky:
-            # resultado = pcky_probabilistico(gramatica, word)
-            print(f"Palabra: '{palabra}' -> [PCKY NO IMPLEMENTADO]")
+            resultado = f"{pcky(gramatica, palabra, simbolo_inicial):.6f}"
         else:
-            resultado = cky(gramatica, palabra)
-            
-            if resultado:
-                print(f"Palabra: '{palabra}' -> [RESULTADO: TRUE]")
-            else:
-                print(f"Palabra: '{palabra}' -> [RESULTADO: FALSE]")
+            resultado = f"{cky(gramatica, palabra, simbolo_inicial)}".upper()
+        
+        print(f"Palabra: '{palabra}' -> [RESULTADO: {resultado}]")
     print("-" * 50)
 
 if __name__ == "__main__":
