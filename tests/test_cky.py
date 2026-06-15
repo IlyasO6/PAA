@@ -352,7 +352,7 @@ class TestCKYCasosBorde:
 #  (ruta_gramática, palabra, esperado, tolerancia)
 TOL = 1e-9 #  se usa esto en vez de 0 porque las operaciones sobre floats no siempre son exactas
 CASOS_PCKY = [
-    #   GP1: dos derivaciones para 'ab', la de mayor prob gana 
+    #   GP1: dos derivaciones para 'ab'
     (PCNF1, list("ab"), 0.80, TOL),   #  max(0.80, 0.20) = 0.80
     (PCNF1, list("ba"), 0.0,  TOL),   #  no pertenece
     (PCNF1, list("a"),  0.0,  TOL),   #  no pertenece
