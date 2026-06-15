@@ -163,8 +163,8 @@ class TestConvertirACNF:
         gramatica, _ = leer_gramatica(CFG1)
         g_cnf, _ = convertir_a_cnf(gramatica, "S")
         for producciones in g_cnf.values():
-            for rhs, _ in producciones:
-                assert len(rhs) <= 2
+            for der, _ in producciones:
+                assert len(der) <= 2
 
     def test_paso4_epsilon_se_elimina_completamente(self):
         """
@@ -174,8 +174,8 @@ class TestConvertirACNF:
         gramatica, _ = leer_gramatica(CFG3)
         g_cnf, _ = convertir_a_cnf(gramatica, "S")
         for producciones in g_cnf.values():
-            for rhs, _ in producciones:
-                assert rhs != ("e",)
+            for der, _ in producciones:
+                assert der != ("e",)
 
     def test_paso4_epsilon_cascada_anulabilidad_propagada(self):
         """
@@ -210,11 +210,11 @@ class TestConvertirACNF:
         gramatica, _ = leer_gramatica(CFG5)
         g_cnf, _ = convertir_a_cnf(gramatica, "S")
         for producciones in g_cnf.values():
-            for rhs, _ in producciones:
-                if len(rhs) == 1:
+            for der, _ in producciones:
+                if len(der) == 1:
                     #  La única producción de longitud 1 permitida es NT -> terminal
-                    assert rhs[0].islower(), (
-                        f"Regla unitaria NT->NT encontrada: {rhs}"
+                    assert der[0].islower(), (
+                        f"Regla unitaria NT->NT encontrada: {der}"
                     )
 
     def test_paso6_elimina_simbolos_inalcanzables(self):
