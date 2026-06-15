@@ -1,0 +1,4 @@
+# Aislar terminales 
+S -> a B | A b
+A -> a
+B -> b

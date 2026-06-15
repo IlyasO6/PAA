@@ -1,8 +1,10 @@
-# Gramática PCFG 3: Pesos desequilibrados
-S -> X Y [1.0]
-X -> A B [0.8] | B A [0.2]
-Y -> C D [0.5] | D C [0.5]
-A -> a [1.0]
+# Cadena larga
+# 'aab': S->AB[0.9] * A->EF[1.0] * E->a[1.0] * F->a[1.0] * B->b[1.0] = 0.9
+# 'ab':  S->CD[0.1] * C->a[1.0] * D->b[1.0] = 0.1
+S -> A B [0.9] | C D [0.1]
+A -> E F [1.0]
+E -> a [1.0]
+F -> a [1.0]
 B -> b [1.0]
-C -> c [1.0]
-D -> d [1.0]
+C -> a [1.0]
+D -> b [1.0]

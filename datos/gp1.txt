@@ -1,7 +1,6 @@
-# Gramática PCFG 1: Ambigüedad estructural
-S -> A X [0.6] | Y C [0.4]
+# Dos derivaciones para la misma cadena
+S -> A B [0.8] | C D [0.2]
 A -> a [1.0]
 B -> b [1.0]
-C -> c [1.0]
-X -> B C [1.0]
-Y -> A B [1.0]
+C -> a [1.0]
+D -> b [1.0]

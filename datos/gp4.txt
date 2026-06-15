@@ -1,4 +1,10 @@
-# Gramática PCFG 4: Ambigüedad léxica
-S -> A B [1.0]
-A -> a [0.2] | b [0.8]
-B -> b [0.7] | a [0.3]
+# Análisis sintáctico de frases
+# p.ej. "kenny duerme en el sofa"
+S -> NP VP [1.0]
+NP -> NN [0.4] | DET NN [0.6]
+VP -> VB [0.2] | NP VP [0.5] | VP PP [0.3]
+PP -> IN NP [1.0]
+IN -> a [0.6] | en [0.4]
+NN -> kenny [0.3] | sofa [0.2] | kratos [0.5]
+DET -> el [0.5] | la [0.5]
+VB -> levanta [0.3] | duerme [0.7]

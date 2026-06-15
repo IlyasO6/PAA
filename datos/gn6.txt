@@ -1,0 +1,7 @@
+# Combina reglas ternarias y reglas unarias
+# Acepta: c, abc, aabbc, aaabbbc, ...
+S -> T C | C
+T -> A T B | A B
+A -> a
+B -> b
+C -> c

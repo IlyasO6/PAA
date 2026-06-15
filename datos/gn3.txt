@@ -1,0 +1,4 @@
+# Carácter vacio
+S -> A B
+A -> e | a
+B -> b

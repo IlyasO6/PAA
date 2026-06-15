@@ -1,4 +1,6 @@
-S -> L R | S S | L X
-X -> S R
-L -> (
-R -> )
+# Acepta: aa, bb, abba, baab, aaaa, bbbb, aabbaa, ...
+S -> A A | B B | A C | B D
+C -> S A
+D -> S B
+A -> a
+B -> b

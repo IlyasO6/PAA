@@ -1,3 +1,5 @@
-S -> X Y
-X -> X X | a
-Y -> Y Y | b
+# Acepta: ab, aabb, aaabbb, aaaabbbb, ...
+S -> A B | A C
+C -> S B
+A -> a
+B -> b

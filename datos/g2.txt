@@ -1,3 +1,4 @@
+# Acepta: ab, bb, bba, bbb, aabb, abab, abbb, ...
 S -> A B | C D | C B | S S
 A -> B C | a
 B -> S C | b

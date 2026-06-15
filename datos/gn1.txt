@@ -1,4 +1,5 @@
-S -> A B C | a
-A -> a A | e
-B -> C | b
+# Binarización
+S -> A B C
+A -> a
+B -> b
 C -> c

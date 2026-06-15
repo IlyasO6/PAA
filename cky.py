@@ -1,13 +1,14 @@
 
-
+from utils.grammar_parser import leer_gramatica
 def invertir_gramatica(gramatica):
     """
-    Convierte { 'S': [(('X', 'A'), 1.0)] } 
-    en { ('X', 'A'): {'S'} } para búsquedas rápidas en el algoritmo CKY
+    Invierte el diccionario de la gramatica y elimina las probabilidades.
+    ej:
+    { 'S': [(('X', 'A'), 1.0)] } -> { ('X', 'A'): {'S'} }
     """
     gramatica_invertida = {}
     for izq, producciones in gramatica.items():
-        for der, _ in producciones: #  ignoramos la probabilidad, pues aqui es inutil
+        for der, _ in producciones:
             if der not in gramatica_invertida:
                 gramatica_invertida[der] = set()
             gramatica_invertida[der].add(izq)
@@ -29,28 +30,28 @@ def cky(gramatica, palabra, simbolo_inicial='S'):
     #  donde L = longitud de la ventana sobre la palabra, e i = posicion donde empieza la ventana
     tabla = [[set() for _ in range(N)] for _ in range(N + 1)]
     
-    #  Llenamos la base (L = 1) con reglas del tipo NT -> terminal
+    #  llenamos la base (L = 1) con reglas del tipo NT -> terminal
     for i in range(N):
-        letra = (palabra[i],) #  La convertimos a tupla ('a',) para buscar en el diccionario invertido
+        letra = (palabra[i],) #  la convertimos a tupla ('a',) para buscar en el diccionario invertido
         if letra in gram_inv:
             for izq in gram_inv[letra]:
                 tabla[1][i].add(izq)
                 
-    #  Creamos el resto de niveles (1 < L < N+1) con reglas del tipo A -> BC
+    #  creamos el resto de niveles (1 < L < N+1) con reglas del tipo A -> BC
     for L in range(2, N + 1):
         for i in range(N - L + 1):
             for k in range(1, L):
                 
-                #  Recuperamos los conjuntos de las subcadenas izquierda y derecha
+                #  recuperamos los conjuntos las partes izquierda y derecha
                 conjunto_izq = tabla[k][i]
                 conjunto_der = tabla[L - k][i + k]
                 
-                #  Probamos a unir cada elemento de la izquierda con cada de la derecha
+                #  probamos a unir cada elemento de la izquierda con cada uno de la derecha
                 for B in conjunto_izq:
                     for C in conjunto_der:
                         posible_der = (B, C)
                         
-                        #  Si la combinación B C está en la gramática, añadimos su generador A
+                        #   si la combinación B C está en la gramática, añadimos su generador A
                         if posible_der in gram_inv:
                             for A in gram_inv[posible_der]:
                                 tabla[L][i].add(A)

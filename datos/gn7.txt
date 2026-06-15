@@ -1,0 +1,6 @@
+# Unarias en cascada
+S -> A
+A -> B 
+B -> C 
+C -> D 
+D -> a 

@@ -1,0 +1,5 @@
+# Reglas unarias (con ciclo): A->B->C->A
+S -> A | b
+A -> B
+B -> C
+C -> A | a

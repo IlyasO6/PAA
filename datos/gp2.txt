@@ -1,3 +1,6 @@
-# Gramática PCFG 2: Recursividad
-S -> A S [0.3] | A A [0.7]
-A -> a [1.0]
+# Una única derivación por cadena para comprobar el producto exacto
+# 'ab': S->AB[0.5] * A->a[0.7] * B->b[1.0] = 0.35
+# 'bb': S->AB[0.5] * A->b[0.3] * B->b[1.0] = 0.15
+S -> A B [0.5]
+A -> a [0.7] | b [0.3]
+B -> b [1.0]

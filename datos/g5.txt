@@ -1,3 +1,5 @@
-S -> A S | a
-A -> X X
-X -> a
+# Acepta: strings de a's de longitud impar (a, aaa, aaaaa, ...)
+S -> a | A B
+B -> S A
+A -> a
+Z -> b | Z Z

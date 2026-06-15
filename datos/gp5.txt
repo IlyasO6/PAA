@@ -1,7 +1,0 @@
-# Gramática PCFG 5: Frase simple (Sujeto + Verbo + Objeto)
-S -> NP VP [1.0]
-NP -> Det N [1.0]
-VP -> V NP [1.0]
-Det -> el [0.5] | un [0.5]
-N -> gato [0.6] | perro [0.4]
-V -> ve [0.8] | muerde [0.2]
