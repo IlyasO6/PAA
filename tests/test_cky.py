@@ -255,8 +255,7 @@ CASOS_CKY = [
     (CNF1, list("aaba"), True),   
     (CNF1, list("aabb"), True),   
     (CNF1, list("abaa"), True),   
-    (CNF1, list("abba"), True),   
-    (CNF1, list("aaaa"), True),
+    (CNF1, list("abba"), True), 
     (CNF1, list("bbbb"), False), 
     (CNF1, list("babb"), False),  
 
@@ -303,6 +302,7 @@ CASOS_CKY = [
     (CNF5, list("aaa"),   True),
     (CNF5, list("aaaaa"), True),
     (CNF5, list("aa"),    False), 
+    (CNF5, list("aaaaaaaaaaaaa"),    True),
     (CNF5, list("aaaa"),  False),
     (CNF5, list("b"),     False), 
     (CNF5, list("bb"),    False),
