@@ -33,7 +33,7 @@ CFG4 = f"{DIR}gn4.txt"
 CFG5 = f"{DIR}gn5.txt"
 CFG6 = f"{DIR}gn6.txt"
 
-#   MÓDULO 1: tests sobre el archivo grammar_parser.py
+#  ________________________ MÓDULO 1: tests sobre el archivo grammar_parser.py _____________________________
 
 class TestGrammarParser:
     """Verifica que se leen las gramáticas correctamente."""
@@ -98,7 +98,7 @@ class TestGrammarParser:
         assert len(gramatica["S"]) == 4
 
 
-#   Módulo 2: tests sobre el archivo cnf_converter.py
+# ____________________________ Módulo 2:  archivo cnf_converter.py _____________________________
 
 class TestEsCNF:
     """Verifica que es_cnf() detecta correctamente si una gramática está en CNF."""
@@ -240,25 +240,25 @@ class TestConvertirACNF:
 
 
 
-#  MÓDULO 3: cky.py — Algoritmo CKY determinista
+# ____________________________ MÓDULO 3: Algoritmo CKY determinista _______________________________________________
 
-#  Casos de prueba: (ruta_gramatica, palabra_como_lista, esperado)
+#   (ruta_gramatica, palabra_como_lista, resultado_esperado)
 CASOS_CKY = [
-    #   G1: strings de longitud 1 o 4+ con estructura específica 
-    (CNF1, list("a"),    True),   #  caso base longitud 1
-    (CNF1, list("b"),    True),   #  caso base longitud 1, terminal distinto
-    (CNF1, list("aa"),   False),  #  longitud 2, no pertenece
-    (CNF1, list("ab"),   False),  #  longitud 2, no pertenece
-    (CNF1, list("aba"),  False),  #  longitud 3, no pertenece
-    (CNF1, list("aaaa"), True),   #  longitud 4, pertenece
-    (CNF1, list("aaab"), True),   #  longitud 4, pertenece
-    (CNF1, list("aaba"), True),   #  longitud 4, pertenece
-    (CNF1, list("aabb"), True),   #  longitud 4, pertenece
-    (CNF1, list("abaa"), True),   #  longitud 4, pertenece
-    (CNF1, list("abba"), True),   #  longitud 4, pertenece
+    #   G1: strings de longitud [1, 4]
+    (CNF1, list("a"),    True),  
+    (CNF1, list("b"),    True),  
+    (CNF1, list("aa"),   False),
+    (CNF1, list("ab"),   False), 
+    (CNF1, list("aba"),  False), 
+    (CNF1, list("aaaa"), True),   
+    (CNF1, list("aaab"), True),   
+    (CNF1, list("aaba"), True),   
+    (CNF1, list("aabb"), True),   
+    (CNF1, list("abaa"), True),   
+    (CNF1, list("abba"), True),   
     (CNF1, list("aaaa"), True),
-    (CNF1, list("bbbb"), False),  #  longitud 4, b's solos no pertenecen
-    (CNF1, list("babb"), False),  #  longitud 4, no pertenece
+    (CNF1, list("bbbb"), False), 
+    (CNF1, list("babb"), False),  
 
     #   G2: gramática ambigua (S -> SS), varios caminos para la misma cadena 
     (CNF2, list("ab"),   True),
@@ -267,8 +267,8 @@ CASOS_CKY = [
     (CNF2, list("bbb"),  True),
     (CNF2, list("aabb"), True),
     (CNF2, list("abab"), True),
-    (CNF2, list("a"),    False),  #  longitud 1 no pertenece
-    (CNF2, list("b"),    False),  #  longitud 1 no pertenece
+    (CNF2, list("a"),    False),  
+    (CNF2, list("b"),    False), 
     (CNF2, list("aa"),   False),
     (CNF2, list("ba"),   False),
 
@@ -278,12 +278,12 @@ CASOS_CKY = [
     (CNF3, list("aaabbb"),   True),
     (CNF3, list("aaaabbbb"), True),
     (CNF3, list("aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbb"), True),
-    (CNF3, list("a"),        False),  #  solo a's
-    (CNF3, list("b"),        False),  #  solo b's
-    (CNF3, list("ba"),       False),  #  orden invertido
-    (CNF3, list("aab"),      False),  #  más a's que b's
-    (CNF3, list("abb"),      False),  #  más b's que a's
-    (CNF3, list("abab"),     False),  #  intercalado, no pertenece
+    (CNF3, list("a"),        False),
+    (CNF3, list("b"),        False), 
+    (CNF3, list("ba"),       False), 
+    (CNF3, list("aab"),      False),
+    (CNF3, list("abb"),      False),
+    (CNF3, list("abab"),     False),
 
     #   G4: palíndromos de longitud par 
     (CNF4, list("aa"),     True),
@@ -292,19 +292,19 @@ CASOS_CKY = [
     (CNF4, list("baab"),   True),
     (CNF4, list("aaaa"),   True),
     (CNF4, list("bbbb"),   True),
-    (CNF4, list("aabbaa"), True),
-    (CNF4, list("a"),      False),   #  longitud impar
-    (CNF4, list("ab"),     False),   #  no es palíndromo
-    (CNF4, list("ba"),     False),
-    (CNF4, list("aba"),    False),   #  longitud impar
+    (CNF4, list("ababbaababbabaabbabaababbaababbabaabbabaababbaababbabaabbaba"), True),
+    (CNF4, list("a"),      False),  
+    (CNF4, list("ab"),     False),  
+    (CNF4, list("ba"),     False), 
+    (CNF4, list("aba"),    False),   
 
-    #   G5: a's de longitud impar + símbolo inalcanzable Z 
+    #   G5: a's de longitud impar y simbolos inalcanzables
     (CNF5, list("a"),     True),
     (CNF5, list("aaa"),   True),
     (CNF5, list("aaaaa"), True),
-    (CNF5, list("aa"),    False),   #  longitud par
+    (CNF5, list("aa"),    False), 
     (CNF5, list("aaaa"),  False),
-    (CNF5, list("b"),     False),   #  Z no afecta el lenguaje
+    (CNF5, list("b"),     False), 
     (CNF5, list("bb"),    False),
 ]
 
@@ -313,8 +313,7 @@ def test_cky_algoritmo(ruta, palabra, esperado):
     """
     Test parametrizado del algoritmo CKY determinista.
     Cubre: positivos, negativos, longitud 1, gramáticas ambiguas,
-    lenguajes con estructura aritmética (a^n b^n), palíndromos,
-    y gramáticas con símbolos inalcanzables.
+    lenguajes (a^n b^n), palíndromos, y gramáticas con símbolos inalcanzables.
     """
     gramatica, _ = leer_gramatica(ruta)
     resultado = cky(gramatica, palabra)
@@ -326,9 +325,7 @@ class TestCKYCasosBorde:
 
     def test_cky_cadena_vacia_devuelve_false(self):
         """
-        El algoritmo CKY debe devolver False para la cadena vacía,
-        ya que N=0 hace que la tabla DP nunca se rellene y el código
-        lo trata explícitamente con 'if N == 0: return False'.
+        El algoritmo CKY debe devolver False para la cadena vacía.
         """
         gramatica, _ = leer_gramatica(CNF1)
         assert cky(gramatica, [], "S") is False
@@ -336,41 +333,37 @@ class TestCKYCasosBorde:
     def test_cky_simbolo_inicial_correcto(self):
         """
         Si se pasa un símbolo inicial que no existe en la gramática,
-        el resultado debe ser False (no excepción).
+        el resultado debe ser False.
         """
         gramatica, _ = leer_gramatica(CNF1)
         assert cky(gramatica, list("a"), "Z") is False
 
     def test_cky_gramatica_ambigua_resultado_correcto(self):
         """
-        G2 tiene S -> SS (recursión directa), lo que permite múltiples
-        árboles de parse para la misma cadena. CKY debe igualmente devolver
-        True si al menos uno existe, gracias al set() que evita duplicados.
+        CKY debe igualmente devolver True si al menos uno existe.
         """
         gramatica, _ = leer_gramatica(CNF2)
         #  'aabb' tiene múltiples derivaciones en G2
         assert cky(gramatica, list("aabb"), "S") is True
 
 
-#  =============================================================================
-#  MÓDULO 4: pcky.py — Algoritmo PCKY probabilístico
-#  =============================================================================
+# ____________________________ MÓDULO 4: Algoritmo PCKY _______________________________________________
 
-#  Casos de prueba: (ruta, palabra, esperado, tolerancia)
-TOL = 1e-9
+#  (ruta_gramática, palabra, esperado, tolerancia)
+TOL = 1e-9 #  se usa esto en vez de 0 porque las operaciones sobre floats no siempre son exactas
 CASOS_PCKY = [
     #   GP1: dos derivaciones para 'ab', la de mayor prob gana 
     (PCNF1, list("ab"), 0.80, TOL),   #  max(0.80, 0.20) = 0.80
     (PCNF1, list("ba"), 0.0,  TOL),   #  no pertenece
     (PCNF1, list("a"),  0.0,  TOL),   #  no pertenece
 
-    #   GP2: única derivación posible por cadena, producto exacto 
+    #   GP2: única derivación posible por cadena
     (PCNF2, list("ab"), 0.35, TOL),   #  0.5 * 0.7 * 1.0
     (PCNF2, list("bb"), 0.15, TOL),   #  0.5 * 0.3 * 1.0
     (PCNF2, list("aa"), 0.0,  TOL),   #  no pertenece
     (PCNF2, list("a"),  0.0,  TOL),   #  no pertenece
 
-    #   GP3: cadena más larga, producto con más factores 
+    #   GP3: cadena más larga
     (PCNF3, list("aab"), 0.9,  TOL),  #  0.9 * 1.0 * 1.0 * 1.0 * 1.0
     (PCNF3, list("ab"),  0.1,  TOL),  #  0.1 * 1.0 * 1.0
     (PCNF3, list("abb"), 0.0,  TOL),  #  no pertenece
@@ -380,8 +373,7 @@ CASOS_PCKY = [
 def test_pcky_algoritmo(ruta, palabra, esperado, tol):
     """
     Test parametrizado del algoritmo PCKY probabilístico.
-    Cubre: selección del máximo entre varias derivaciones, rechazo limpio
-    (devuelve 0.0 sin excepción), y cálculo exacto de productos de probabilidades.
+    Cubre: selección del máximo entre varias derivaciones y cálculo exacto de productos de probabilidades.
     """
     gramatica, _ = leer_gramatica(ruta)
     resultado, _ = pcky(gramatica, palabra)
@@ -391,11 +383,11 @@ def test_pcky_algoritmo(ruta, palabra, esperado, tol):
 
 
 class TestPCKYCasosBorde:
-    """Tests de casos borde para PCKY."""
+    """ Tests de casos borde para PCKY."""
 
     def test_pcky_cadena_vacia_devuelve_0(self):
         """
-        Para cadena vacía, PCKY debe devolver 0.0 (no excepción).
+        Para cadena vacía, PCKY debe devolver 0.0.
         """
         gramatica, _ = leer_gramatica(PCNF1)
         assert pcky(gramatica, []) == 0.0
@@ -419,9 +411,7 @@ class TestPCKYCasosBorde:
             )
 
 
-#  =============================================================================
-#  MÓDULO 5: Tests de integración — Conversor + CKY (preservación del lenguaje)
-#  =============================================================================
+#  MÓDULO 5: Tests de integración, Conversor + CKY
 
 class TestIntegracion:
     """
@@ -429,12 +419,11 @@ class TestIntegracion:
     las cadenas aceptadas/rechazadas antes de convertir deben seguir
     siéndolo después (comprobado vía CKY sobre la gramática convertida).
 
-    Nota: CKY no puede ejecutarse directamente sobre gramáticas No-CNF,
-    por lo que las aceptaciones 'antes' se han verificado manualmente
-    y se documentan como ground truth derivado analíticamente.
+    CKY no puede ejecutarse directamente sobre gramáticas No-CNF,
+    por lo que las aceptaciones 'antes' se han verificado manualmente.
     """
 
-    #  (ruta_no_cnf, simbolo_inicial, cadena, esperado_tras_conversion)
+    #  (ruta_gramática, simbolo_inicial, cadena, esperado_tras_conversion)
     CASOS_PRESERVACION = [
         #  GN1: lenguaje = {abc}
         (CFG1, "S", list("abc"),  True),
@@ -448,7 +437,7 @@ class TestIntegracion:
         (CFG2, "S", list("b"),    False),
         (CFG2, "S", list("ba"),   False),
 
-        #  GN3: lenguaje = {b, ab}  (A puede ser epsilon)
+        #  GN3: lenguaje = {b, ab}  (A puede ser símbolo vacio)
         (CFG3, "S", list("b"),    True),
         (CFG3, "S", list("ab"),   True),
         (CFG3, "S", list("a"),    False),
@@ -462,7 +451,7 @@ class TestIntegracion:
         (CFG4, "S", list("aaac"), False),
         (CFG4, "S", list("a"),    False),
 
-        #  GN5: lenguaje = {a, b}  (ciclos unitarios A->B->C->A, C->a)
+        #  GN5: lenguaje = {a, b}  (ciclos unitarios A->B->C->A)
         (CFG5, "S", list("a"),    True),
         (CFG5, "S", list("b"),    True),
         (CFG5, "S", list("aa"),   False),
@@ -483,9 +472,6 @@ class TestIntegracion:
     def test_conversion_preserva_lenguaje(self, ruta, inicial, palabra, esperado):
         """
         Convierte la CFG a CNF y ejecuta CKY sobre la gramática resultante.
-        El resultado debe coincidir con el ground truth del lenguaje original.
-        Este es el test de integración más importante: valida que la conversión
-        es semánticamente correcta (no solo sintácticamente válida).
         """
         gramatica, _ = leer_gramatica(ruta)
         g_cnf, nuevo_inicial = convertir_a_cnf(gramatica, inicial)
@@ -499,14 +485,13 @@ class TestIntegracion:
         """
         Aplicar convertir_a_cnf() dos veces debe producir una gramática
         que sigue pasando es_cnf() y reconoce el mismo lenguaje.
-        Probado con GN6 (la gramática más compleja).
         """
         gramatica, _ = leer_gramatica(CFG6)
         g_cnf1, inicial1 = convertir_a_cnf(gramatica, "S")
         g_cnf2, inicial2 = convertir_a_cnf(g_cnf1, inicial1)
         assert es_cnf(g_cnf2) is True
 
-        #  El lenguaje debe seguir siendo el mismo
+        #  el lenguaje debe seguir siendo el mismo
         for cadena, esperado in [(list("c"), True), (list("abc"), True),
                                   (list("ab"), False), (list("cc"), False)]:
             assert cky(g_cnf2, cadena, inicial2) == esperado

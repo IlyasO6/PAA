@@ -95,6 +95,7 @@ B -> b [1.0]
 ### Conversor a Forma Normal de Chomsky
 
 Este módulo contiene dos funciones principales: la encargada de detectar si una gramática está en CNF *es_cnf* y la que transforma la gramática *convertir_a_cnf* (y esta tiene una función auxiliar por cada paso).
+
 La primera función es muy básica: lo único que hay que comprobar es que las reglas sean o del tipo "A -> B C" o "A -> a"; si hay alguna que incumple esta premisa, entonces no es CNF. Cabe destacar que se puede eliminar la llamada de esta función para usar en su lugar el "flag" *--cnf* (en el código se especifica la línea a cambiar), que se puede añadir para indicar al código que hace falta transformar la gramática. 
 La segunda no es tan trivial, y sigue los siguientes pasos para transformar cualquier gramática libre de contexto a CNF:
 
